@@ -5,9 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-
+/*
+Этот код представляет собой класс LoginPage, который представляет веб-страницу для ввода логина и пароля.
+*/
 public class LoginPage extends BasePage{
-
+//  Аннотации @FindBy используются для идентификации веб-элементов на странице с помощью локаторов.
     @FindBy(xpath = "//input[@name='email']")
     WebElement emailField;
     @FindBy(xpath = "//input[@name='password']")
@@ -17,10 +19,14 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//button[@name='registration']")
     WebElement registrationButton;
 
+    /*Это конструктор класса, который принимает объект WebDriver в качестве параметра.
+     Он инициализирует объект страницы, устанавливая драйвер и инициализируя элементы страницы с помощью PageFactory.initElements.*/
     public LoginPage(WebDriver driver) {
         setDriver(driver);
         PageFactory.initElements(new AjaxElementLocatorFactory(driver,20), this);
     }
+    /*Это методы для ввода текста в поля электронной почты и пароля соответственно.
+     Они возвращают экземпляр LoginPage, чтобы можно было выполнять цепочку вызовов методов*/
     public LoginPage fillEmailField(String email){
         emailField.sendKeys(email);
         return this;
