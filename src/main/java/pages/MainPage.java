@@ -27,7 +27,10 @@ public MainPage(WebDriver driver){
     PageFactory.initElements(new AjaxElementLocatorFactory(driver,20), this);
 }
 
-
+public LoginPage clickLoginButton(){
+    loginTopMenuItem.click();
+    return new LoginPage(driver);
+}
 
 
 }
