@@ -1,10 +1,17 @@
 package pages;
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 /*
 Этот код представляет собой класс LoginPage, который представляет веб-страницу для ввода логина и пароля.
 */
@@ -36,5 +43,27 @@ public class LoginPage extends BasePage{
         return  this;
     }
 
+    public Alert clickByRegistrationButton(){
+        registrationButton.click();
+        return getAlertIfPresent();
+    }
+        private Alert getAlertIfPresent(){
+        short time = 5;
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+            return wait.until(ExpectedConditions.alertIsPresent());}
+        catch (TimeoutException e){
+            System.out.println("There is no alert...");
+            return null;
+        }
+        }
+    public BasePage clickByLoginButton(){
+        loginButton.click();
+        Alert alert = getAlertIfPresent();
+        if(alert != null){
+            alert.accept();
+            return new LoginPage(driver);
+        }else {return new ContactsPage(driver);}
+    }
 
 }
