@@ -1,9 +1,7 @@
 package pages;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -43,11 +41,16 @@ public class LoginPage extends BasePage{
         return  this;
     }
 
-    public Alert clickByRegistrationButton(){
-        registrationButton.click();
-        return getAlertIfPresent();
+    public Alert clickByRegistrationButton(){ // Этот метод кликает по кнопке регистрации на веб-странице.
+        Allure.step("Wait and click on the 'Registration' button.");
+        // Он вызывает метод click() для registrationButton.
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement regButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@name='registration']")));
+        regButton.click();
+        return getAlertIfPresent(); // Затем он также возвращает объект LoginPage, чтобы этот метод также можно было использовать в цепочке вызовов.
     }
-        private Alert getAlertIfPresent(){
+
+    private Alert getAlertIfPresent(){
         short time = 5;
         try{
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
@@ -58,6 +61,7 @@ public class LoginPage extends BasePage{
         }
         }
     public BasePage clickByLoginButton(){
+        Allure.step("Wait and click on the 'Login' button.");
         loginButton.click();
         Alert alert = getAlertIfPresent();
         if(alert != null){

@@ -1,6 +1,7 @@
 package pages;
 
 import helpers.TopMenuItem;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -44,6 +45,7 @@ public class BasePage {
         }
     }
     public static <T extends BasePage> T openTopMenuItem(TopMenuItem topMenuItem){
+        Allure.step("Open top menu item.");
         WebElement menuItem =
                 driver.findElement(By.xpath("//a[contains(text(), '"+topMenuItem+"')]"));
         menuItem.click();

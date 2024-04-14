@@ -1,6 +1,7 @@
 package pages;
 
 import config.BaseTest;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +26,8 @@ public class MainPage extends BasePage{
 public MainPage(WebDriver driver){
     setDriver(driver);
     driver.get("https://telranedu.web.app/home"); // Переходим на указанный URL-адрес веб-страницы с помощью метода get объекта WebDriver.
-    PageFactory.initElements(new AjaxElementLocatorFactory(driver,20), this); /*
+    PageFactory.initElements(new AjaxElementLocatorFactory(driver,20), this);
+    /*
    PageFactory.initElements - Инициализирует элементы страницы с помощью PageFactory.
         Она ищет все аннотированные элементы @FindBy в классе MainPage и связывает их с реальными элементами веб-страницы.
         Используется AjaxElementLocatorFactory для ожидания элементов до их появления на странице в течение указанного времени (в данном случае, 20 секунд).*/

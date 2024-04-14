@@ -1,5 +1,6 @@
 package helpers;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ public class AlertHandler {
     }
 
     public static  boolean handleAlert(Alert alert, String expectedText){
+        Allure.step("Handling a pop-up window.");
         if(alert !=null){
             String alertText = alert.getText();
             System.out.println("Alert text : "+alertText);
