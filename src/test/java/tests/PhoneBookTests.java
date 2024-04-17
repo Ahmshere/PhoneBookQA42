@@ -3,6 +3,7 @@ package tests;
 import config.BaseTest;
 import helpers.*;
 import io.qameta.allure.Allure;
+import models.Contact;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -64,7 +65,10 @@ public class PhoneBookTests extends BaseTest {
                 .fillPasswordField(PropertiesReader.getProperty("mypassword"))
                 .clickByLoginButton();
         AddPage addPage = BasePage.openTopMenuItem(TopMenuItem.ADD);
-
+        Contact contact = new Contact(NameAndLastNameGenerator.generateName(),
+                NameAndLastNameGenerator.generateLastName(),
+                PhoneNumberGenerator.generatePhoneNumber(),
+                EmailGenerator.generateEmail(5,5,3),"Address 343","desc");
 
     }
 
