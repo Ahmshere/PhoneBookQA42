@@ -7,10 +7,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.BasePage;
-import pages.ContactsPage;
-import pages.LoginPage;
-import pages.MainPage;
+import pages.*;
 
 public class PhoneBookTests extends BaseTest {
 
@@ -56,6 +53,19 @@ public class PhoneBookTests extends BaseTest {
         boolean res = ContactsPage
                 .isElementPersist(getDriver().findElement(By.xpath("//button")));
         Assert.assertTrue(res);
+    }
+
+    @Test
+    public void loginOfAnExistingUserAddContact(){
+        MainPage mainPage = new MainPage(getDriver());
+        LoginPage loginPage = BasePage.openTopMenuItem(TopMenuItem.LOGIN);
+        loginPage
+                .fillEmailField(PropertiesReader.getProperty("myuser"))
+                .fillPasswordField(PropertiesReader.getProperty("mypassword"))
+                .clickByLoginButton();
+        AddPage addPage = BasePage.openTopMenuItem(TopMenuItem.ADD);
+
+
     }
 
     @Test

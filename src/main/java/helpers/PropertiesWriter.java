@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class PropertiesWriter {
     public static void main(String[] args) throws IOException {
-        writeProperty("test","result", true);
+        writeProperty("test1","result1", true);
     }
 
     private static final String PROPERTIES_FILE = "src/main/resources/resources.properties"; // Здесь определен путь к файлу свойств в виде строки.
