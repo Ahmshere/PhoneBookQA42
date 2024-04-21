@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Contact {
     private String name;
     private String lastName;
@@ -66,5 +68,20 @@ public class Contact {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contact contact)) return false;
+        return Objects.equals(getName(), contact.getName()) && Objects.equals(getLastName(),
+                contact.getLastName()) && Objects.equals(getPhone(), contact.getPhone()) && Objects.equals(getEmail(),
+                contact.getEmail()) && Objects.equals(getAddress(), contact.getAddress()) && Objects.equals(getDescription(),
+                contact.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getLastName(), getPhone(), getEmail(), getAddress(), getDescription());
     }
 }

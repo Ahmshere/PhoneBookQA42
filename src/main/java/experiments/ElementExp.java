@@ -17,15 +17,16 @@ public class ElementExp {
 
         WebElement elementA = driver.findElement(By.id("column-a"));
         WebElement elementB = driver.findElement(By.id("column-b"));
-WebElement aElement = driver.findElement(By.xpath("//a"));
+        // WebElement aElement = driver.findElement(By.xpath("//a"));
         Actions actions = new Actions(driver);
        // actions.dragAndDrop(elementA, elementB).release(elementB).build().perform();
-        Thread.sleep(1000);
 
         Action dragAndDrop = actions.clickAndHold(elementA)
                 .moveToElement(elementB)
-                .release(elementB)
+                .release(elementA)
                 .build();
+        dragAndDrop.perform();
+        Thread.sleep(3000);
 
         driver.quit();
 

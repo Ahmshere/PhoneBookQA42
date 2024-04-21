@@ -68,7 +68,11 @@ public class PhoneBookTests extends BaseTest {
         Contact contact = new Contact(NameAndLastNameGenerator.generateName(),
                 NameAndLastNameGenerator.generateLastName(),
                 PhoneNumberGenerator.generatePhoneNumber(),
-                EmailGenerator.generateEmail(5,5,3),"Address 343","desc");
+                EmailGenerator.generateEmail(5,5,3),
+                AddressGenerator.generateAddress(),"desc");
+        addPage.fillContactFormAndSave(contact);
+        ContactsPage contactsPage = new ContactsPage(getDriver());
+        Assert.assertTrue(contactsPage.getDataFromContactList(contact));
 
     }
 
