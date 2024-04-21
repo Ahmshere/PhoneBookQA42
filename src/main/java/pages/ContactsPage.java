@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ContactsPage extends BasePage {
 
@@ -54,6 +56,32 @@ public class ContactsPage extends BasePage {
         return result;
 
     }
-
+    protected List<WebElement> getContactsList(){
+        return driver.findElements(By.xpath("//div[@class='contact-item_card__2SOIM']"));
+    }
+    public void clickRemoveButton(){
+        WebElement removeButton = driver.findElement(By.xpath("//button[text()='Remove']"));
+        removeButton.click();
+    }
+    public int deleteContactByPhoneNumber(String phoneNumberOrName){
+        List<WebElement> contactList = getContactsList();
+        int initSize = contactList.size();
+        try {
+            for (WebElement contact : contactList){
+                WebElement phoneNumberData = contact
+                        .findElement(By.xpath("//h2[text()='"+phoneNumberOrName+"'] | //h3[text()='"+phoneNumberOrName+"']"));
+                if(phoneNumberData.isDisplayed()){
+                    phoneNumberData.click();
+                    clickRemoveButton();
+                    break;
+                }
+            }
+        }catch (NoSuchElementException exception){exception.fillInStackTrace();
+            System.out.println("The item "+ phoneNumberOrName+" was not found...");}
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            wait.until(ExpectedConditions
+                    .numberOfElementsToBe(By.xpath("//div[@class='contact-item_card__2SOIM']"), initSize-1));
+            return contactList.size();
+    }
 
 }

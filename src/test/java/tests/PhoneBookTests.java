@@ -10,6 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 
+import java.io.IOException;
+
 public class PhoneBookTests extends BaseTest {
 
     @Test
@@ -73,6 +75,29 @@ public class PhoneBookTests extends BaseTest {
         addPage.fillContactFormAndSave(contact);
         ContactsPage contactsPage = new ContactsPage(getDriver());
         Assert.assertTrue(contactsPage.getDataFromContactList(contact));
+
+    }
+    @Test
+    public void deleteContactWithSerialization() throws IOException {
+        String fileName = "contactDataFile.ser";
+        MainPage mainPage = new MainPage(getDriver());
+        LoginPage loginPage = BasePage.openTopMenuItem(TopMenuItem.LOGIN);
+        loginPage
+                .fillEmailField(PropertiesReader.getProperty("myuser"))
+                .fillPasswordField(PropertiesReader.getProperty("mypassword"))
+                .clickByLoginButton();
+        AddPage addPage = BasePage.openTopMenuItem(TopMenuItem.ADD);
+        Contact contact = new Contact(NameAndLastNameGenerator.generateName(),
+                NameAndLastNameGenerator.generateLastName(),
+                PhoneNumberGenerator.generatePhoneNumber(),
+                EmailGenerator.generateEmail(5,5,3),
+                AddressGenerator.generateAddress(),"desc");
+        addPage.fillContactFormAndSave(contact);
+        Contact.serializationContact(contact, fileName);
+        ContactsPage contactsPage = new ContactsPage(getDriver());
+        Contact deserializedContact = Contact.deSerializationContact(fileName);
+
+
 
     }
 
