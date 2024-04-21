@@ -56,6 +56,9 @@ public class ContactsPage extends BasePage {
         return result;
 
     }
+    public int getContactListSize(){
+        return getContactsList().size();
+    }
     protected List<WebElement> getContactsList(){
         return driver.findElements(By.xpath("//div[@class='contact-item_card__2SOIM']"));
     }

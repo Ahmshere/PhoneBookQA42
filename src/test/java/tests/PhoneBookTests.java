@@ -97,6 +97,9 @@ public class PhoneBookTests extends BaseTest {
         ContactsPage contactsPage = new ContactsPage(getDriver());
         Contact deserializedContact = Contact.deSerializationContact(fileName);
 
+        Assert.assertNotEquals(contactsPage.deleteContactByPhoneNumber(deserializedContact.getPhone()),
+                contactsPage.getContactListSize());
+
 
 
     }
