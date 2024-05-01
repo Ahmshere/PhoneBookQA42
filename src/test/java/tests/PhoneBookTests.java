@@ -22,8 +22,7 @@ public class PhoneBookTests extends BaseTest {
         Allure.step("Open Login page ");
 
         LoginPage loginPage = BasePage.openTopMenuItem(TopMenuItem.LOGIN);
-
-        Alert alert = loginPage.fillEmailField("kjdgljf@mail.com").clickByRegistrationButton();
+        Alert alert = loginPage.fillEmailField(EmailGenerator.generateEmail(5,5,3)).clickByRegistrationButton();
         String expectedAlertText = "Wrong";
 
         boolean isAlertHandled = AlertHandler.handleAlert(alert, expectedAlertText);
@@ -42,7 +41,6 @@ public class PhoneBookTests extends BaseTest {
                 .clickByRegistrationButton();
         boolean result = AlertHandler.handleAlert(alert, expectedAlertText);
         Assert.assertTrue(result);
-
     }
 
     @Test
@@ -74,6 +72,7 @@ public class PhoneBookTests extends BaseTest {
                 AddressGenerator.generateAddress(),"desc");
         addPage.fillContactFormAndSave(contact);
         ContactsPage contactsPage = new ContactsPage(getDriver());
+        System.out.println("Contact list size: "+contactsPage.getContactListSize());
         Assert.assertTrue(contactsPage.getDataFromContactList(contact));
 
     }
@@ -99,9 +98,6 @@ public class PhoneBookTests extends BaseTest {
 
         Assert.assertNotEquals(contactsPage.deleteContactByPhoneNumber(deserializedContact.getPhone()),
                 contactsPage.getContactListSize());
-
-
-
     }
 
     @Test
@@ -119,6 +115,5 @@ public class PhoneBookTests extends BaseTest {
         } else {
             TakeScreen.takeScreenShot(getDriver(), "Successful Registration");
         }
-
     }
 }
