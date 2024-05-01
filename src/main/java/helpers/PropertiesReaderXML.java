@@ -18,7 +18,9 @@ public class PropertiesReaderXML implements TestHelper {
 
     public static void main(String[] args) {
         PropertiesWriterXML propertiesWriterXML = new PropertiesWriterXML();
-        propertiesWriterXML.setProperty("user1","mymail@mail.com", false);
-        getProperty("user1", XML_FILE_PATH);
+        propertiesWriterXML
+                .setProperty("maxValue","3", false, XML_FILE_PATH);
+
+        System.out.println("Value : "+getProperty("maxValue", XML_FILE_PATH));
     }
 }

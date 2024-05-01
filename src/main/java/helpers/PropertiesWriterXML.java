@@ -11,16 +11,16 @@ public class PropertiesWriterXML implements TestHelper {
 
     Properties properties = new Properties();
 
-    public void setProperty(String key, String value, boolean clearFile) {
+    public void setProperty(String key, String value, boolean clearFile, String path) {
         if (!clearFile) {
-            try (FileInputStream fileInputStream = new FileInputStream(XML_FILE_PATH)) {
+            try (FileInputStream fileInputStream = new FileInputStream(path)) {
                 properties.loadFromXML(fileInputStream);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         properties.setProperty(key, value);
-        try (FileOutputStream fileOutputStream = new FileOutputStream(XML_FILE_PATH)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(path)) {
             properties.storeToXML(fileOutputStream, null);
         } catch (IOException e) {
             e.printStackTrace();
