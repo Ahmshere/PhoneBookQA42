@@ -20,9 +20,12 @@ public class PropertiesWriterXML implements TestHelper {
             }
         }
         properties.setProperty(key, value);
-        try(FileOutputStream fileOutputStream = new FileOutputStream(XML_FILE_PATH)){
-            properties.storeToXML(fileOutputStream,null);
-        }catch (IOException e){e.printStackTrace();}
+        try (FileOutputStream fileOutputStream = new FileOutputStream(XML_FILE_PATH)) {
+            properties.storeToXML(fileOutputStream, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
 }
