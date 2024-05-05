@@ -4,4 +4,6 @@
 <entry key="user1">mymail@mail.com</entry>
 <entry key="user2">mymail2@mail.com</entry>
 <entry key="maxValue">3</entry>
+<entry key="mypassword">MyPassword123!</entry>
+<entry key="myuser">mymegamail@mail.com</entry>
 </properties>
