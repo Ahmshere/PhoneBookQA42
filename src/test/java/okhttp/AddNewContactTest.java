@@ -7,6 +7,7 @@ import models.ContactResponseModel;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -33,7 +34,8 @@ public class AddNewContactTest implements TestHelper {
         ContactResponseModel contactResponseModel =
                 GSON.fromJson(response.body().string(), ContactResponseModel.class);
         System.out.println("Message : "+contactResponseModel.getMessage());
-
+       String id = IDExtractor.getId(contactResponseModel.getMessage());
+       Assert.assertTrue(response.isSuccessful());
 
     }
 

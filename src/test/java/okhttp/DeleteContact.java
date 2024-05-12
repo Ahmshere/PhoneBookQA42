@@ -46,7 +46,8 @@ public class DeleteContact implements TestHelper {
                 GSON.fromJson(response.body().string(), ContactResponseModel.class);
         System.out.println(contactResponseModel.getMessage());
         Assert.assertTrue(response.isSuccessful());
-
-
     }
+
+
+
 }

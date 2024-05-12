@@ -25,7 +25,7 @@ public class BaseTest {
 
     private WebDriver driver;
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         return driver;
     } /*Метод getDriver() используется для получения экземпляра объекта WebDriver из других классов.
 В данном конкретном случае, этот метод используется в классе BaseTest, чтобы предоставить доступ к объекту WebDriver из других частей кода.
@@ -44,51 +44,55 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters("browser")
-    public void setUp(@Optional("chrome") String browser){
-        if(browser.equalsIgnoreCase("chrome")){
+    public void setUp(@Optional("chrome") String browser) {
+        if (browser.equalsIgnoreCase("chrome")) {
 
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--lang=en");
             driver = new ChromeDriver(options);
-        }else if(browser.equalsIgnoreCase("firefox")){
+        } else if (browser.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            FirefoxOptions options =new FirefoxOptions();
-            options.addPreference("intl.accept_languages","en");
+            FirefoxOptions options = new FirefoxOptions();
+            options.addPreference("intl.accept_languages", "en");
             driver = new FirefoxDriver(options);
-        }else if(browser.equalsIgnoreCase("edge")){
+        } else if (browser.equalsIgnoreCase("edge")) {
             WebDriverManager.edgedriver().setup();
             EdgeOptions options = new EdgeOptions();
             driver = new EdgeDriver();
+        } else {
+            throw new IllegalArgumentException("Invalid browser value : " + browser);
         }
-        else {throw new IllegalArgumentException("Invalid browser value : "+browser);}
         driver = getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
     }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmmss");
         String currentDate = dateFormat.format(new Date());
-        String fileName = "PhoneBook_"+currentDate+".log";
+        String fileName = "PhoneBook_" + currentDate + ".log";
 
         try {
             FileWriter writer = new FileWriter(fileName);
-            LogEntries logEntries = driver.manage().logs().get("performance");
-            for (LogEntry entry : logEntries){
-                writer.write(entry.getMessage()+"\n");
-            }   writer.close();
+            LogEntries logEntries = driver.manage().logs().get("client");
+            for (LogEntry entry : logEntries) {
+                writer.write(entry.getMessage() + "\n");
+            }
+            writer.close();
             System.out.println("File log has been created...");
 
-        }catch (IOException e){}
-
-
-        WebDriver driver1 = getDriver();
-        if(driver1 != null){
-            driver1.quit();
+        } catch (IOException e) {
+        } finally {
+            WebDriver driver1 = getDriver();
+            if (driver1 != null) {
+                driver1.quit();
+            }
         }
+
     }
 
 
