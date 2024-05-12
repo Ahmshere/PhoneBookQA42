@@ -36,8 +36,11 @@ public class AddNewContactTest implements TestHelper {
         System.out.println("Message : "+contactResponseModel.getMessage());
        String id = IDExtractor.getId(contactResponseModel.getMessage());
        Assert.assertTrue(response.isSuccessful());
-
     }
+@Test
+    public void addNewContactNegative(){
 
+
+}
 
 }

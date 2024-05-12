@@ -19,6 +19,7 @@ public interface TestHelper {
     public static final String REGISTRATION_PATH = "/v1/user/registration/usernamepassword";
     public static final String GET_ALL_CONTACTS = "/v1/contacts";
     public static final String UPDATE_CONTACTS = "/v1/contacts";
+    public static final String DELETE_ALL_CONTACTS = "/v1/contacts/clear";
     public static final String DELETE_CONTACT = "/v1/contacts/";
     public static final String ADD_CONTACT = "/v1/contacts";
 
