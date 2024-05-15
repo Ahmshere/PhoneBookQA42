@@ -37,8 +37,8 @@ public class PasswordStringGenerator {
                 // целое число в диапазоне от 0 до 9 (включительно). Этот диапазон используется, так как мы генерируем цифры.
                 password.append(digit);
             }
-            String specialChar = "[]!$_-";
-            int specialCharecterCount = 1 + random.nextInt(3);
+            String specialChar = "[@$#^&*!]";
+            int specialCharecterCount = 2 + random.nextInt(2);
             for(int i =0; i<specialCharecterCount; i++){
                 int index = random.nextInt(specialChar.length());
                 char specChar = specialChar.charAt(index);

@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestRegistration">
+    <test name="PhoneBookAPI">
+        <classes>
+            <class name="okhttp.RegistrationTest">
+                <methods>
+                    <include name="registrationTestPositive"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+</suite>

@@ -36,15 +36,12 @@
                 <configuration>
                     <suiteXmlFiles>
                         <!--<suiteXmlFile>testng.xml</suiteXmlFile>-->
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile>
                         <!-- <suiteXmlFile>src/test/resources/testng2.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
-                    <systemProperties>
-                        <property>
-                            <name>groups</name>
-                            <value>${surefire.groups}</value>
-                        </property>
-                    </systemProperties>
+                    <systemPropertyVariables>
+                        <groups>${surefire.groups}</groups>
+                    </systemPropertyVariables>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
@@ -149,4 +146,41 @@
 
 
     </dependencies>
+    <profiles>
+        <profile>
+            <id>login</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.2.5</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>reg</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.2.5</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/main/resources/regtest.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

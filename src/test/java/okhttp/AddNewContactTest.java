@@ -4,6 +4,7 @@ import helpers.*;
 import interfaces.TestHelper;
 import models.Contact;
 import models.ContactResponseModel;
+import models.ErrorModel;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -37,10 +38,28 @@ public class AddNewContactTest implements TestHelper {
        String id = IDExtractor.getId(contactResponseModel.getMessage());
        Assert.assertTrue(response.isSuccessful());
     }
-@Test
-    public void addNewContactNegative(){
 
+    @Test
+    public void addNewContactNegative() throws IOException {
+        Contact contact = new Contact(
+                NameAndLastNameGenerator.generateName(),
+                NameAndLastNameGenerator.generateLastName(),
+                "111",
+                EmailGenerator.generateEmail(5,5,3),
+                AddressGenerator.generateAddress(),"desc");
+        RequestBody requestBody = RequestBody.create(GSON.toJson(contact),JSON);
 
-}
+        Request request = new Request.Builder()
+                .url(BASE_URL+ADD_CONTACT)
+                .addHeader(AUTHORIZATION_HEADER,
+                        PropertiesReaderXML.getProperty("token", TestHelper.XML_FILE_PATH))
+                .post(requestBody)
+                .build();
+
+        Response response = CLIENT.newCall(request).execute();
+        ErrorModel errorModel = GSON.fromJson(response.body().string(), ErrorModel.class);
+        System.out.println(errorModel.getMessage());
+        Assert.assertEquals(response.code(), 400);
+    }
 
 }
