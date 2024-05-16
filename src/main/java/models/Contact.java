@@ -4,22 +4,22 @@ import java.io.*;
 import java.util.Objects;
 
 public class Contact implements Serializable {
-    private String id;
-    private String name;
-    private String lastName;
-    private String phone;
-    private String email;
-    private String address;
-    private String description;
+    String id;
+    String name;
+    String lastName;
+    String email;
+    String phone;
+    String address;
+    String description;
 
     public Contact() {
     }
 
-    public Contact(String name, String lastName, String phone, String email, String address, String description) {
+    public Contact(String name, String lastName, String email, String phone,  String address, String description) {
         this.name = name;
         this.lastName = lastName;
-        this.phone = phone;
         this.email = email;
+        this.phone = phone;
         this.address = address;
         this.description = description;
     }
@@ -28,10 +28,18 @@ public class Contact implements Serializable {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
-        this.phone = phone;
         this.email = email;
+        this.phone = phone;
         this.address = address;
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
