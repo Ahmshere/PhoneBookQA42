@@ -118,4 +118,16 @@ public class Contact implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "CONTACT {" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

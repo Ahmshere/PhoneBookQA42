@@ -28,6 +28,7 @@ public class GetAllContactsTest implements TestHelper {
             System.out.println(contact.getName());
             System.out.println(contact.getLastName());
             System.out.println(contact.getEmail());
+            System.out.println(contact.getId());
             System.out.println("++++++++++++++++++++++++++++++++++++");
         }
     Assert.assertTrue(response.isSuccessful());

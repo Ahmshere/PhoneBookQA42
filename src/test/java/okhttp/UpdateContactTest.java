@@ -23,7 +23,7 @@ public class UpdateContactTest implements TestHelper {
                 EmailGenerator.generateEmail(7,5,3),
                 PhoneNumberGenerator.generatePhoneNumber(),
                 AddressGenerator.generateAddress(),"mydesc");
-
+        System.out.println(contactModel.toString());
         RequestBody requestBody=RequestBody.create(GSON.toJson(contactModel),JSON);
         Request request = new Request.Builder()
                 .url(BASE_URL+ADD_CONTACT)
@@ -31,6 +31,7 @@ public class UpdateContactTest implements TestHelper {
                 .post(requestBody).build();
 
         Response response = CLIENT.newCall(request).execute();
+
         ContactResponseModel contactResponseModel =
                 GSON.fromJson(response.body().string(), ContactResponseModel.class);
         String responseMsg = contactResponseModel.getMessage();
@@ -45,6 +46,7 @@ public class UpdateContactTest implements TestHelper {
                 contactModel.getPhone(),
                 contactModel.getAddress(),
                 contactModel.getDescription() );
+        System.out.println(createdModel.toString());
         RequestBody updaterequestBody=RequestBody.create(GSON.toJson(createdModel),JSON);
         Request updaterequest = new Request.Builder()
                 .url(BASE_URL+ADD_CONTACT)
@@ -52,8 +54,10 @@ public class UpdateContactTest implements TestHelper {
                 .put(updaterequestBody).build();
 
         Response updateresponse = CLIENT.newCall(updaterequest).execute();
+
         ContactResponseModel contactResponseModel1 =
                 GSON.fromJson(updateresponse.body().string(), ContactResponseModel.class);
+
         System.out.println(contactResponseModel1.getMessage());
         Assert.assertTrue(updateresponse.isSuccessful());
     }
