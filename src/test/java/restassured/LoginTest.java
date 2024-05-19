@@ -62,7 +62,7 @@ public class LoginTest implements TestHelper {
                 .assertThat()
                 .statusCode(401)
                 .extract().as(ErrorModel.class);
-        System.out.println(errorModel.getError()+" : "+errorModel.getMessage());
+        System.out.println("++++ MESSAGE : "+errorModel.getError()+" : "+errorModel.getMessage());
     }
 
 }
