@@ -2,6 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <entry key="user1">mymail@mail.com</entry>
+<entry key="fakeuser">myfakemail@mail.com</entry>
 <entry key="mypassword">MyPassword123!</entry>
 <entry key="user2">mymail2@mail.com</entry>
 <entry key="maxValue">3</entry>
