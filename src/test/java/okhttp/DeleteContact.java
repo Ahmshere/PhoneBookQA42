@@ -45,8 +45,8 @@ public class DeleteContact implements TestHelper {
         Contact contact = new Contact(
                 NameAndLastNameGenerator.generateName(),
                 NameAndLastNameGenerator.generateLastName(),
-                PhoneNumberGenerator.generatePhoneNumber(),
                 EmailGenerator.generateEmail(5, 5, 3),
+                PhoneNumberGenerator.generatePhoneNumber(),
                 AddressGenerator.generateAddress(), "desc");
         RequestBody requestBody = RequestBody.create(GSON.toJson(contact), JSON);
         Request request = new Request.Builder()
