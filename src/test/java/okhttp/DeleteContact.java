@@ -23,8 +23,8 @@ public class DeleteContact implements TestHelper {
         Contact contact = new Contact(
                 NameAndLastNameGenerator.generateName(),
                 NameAndLastNameGenerator.generateLastName(),
-                PhoneNumberGenerator.generatePhoneNumber(),
                 EmailGenerator.generateEmail(5,5,3),
+                PhoneNumberGenerator.generatePhoneNumber(),
                 AddressGenerator.generateAddress(),"desc");
         RequestBody requestBody = RequestBody.create(GSON.toJson(contact), JSON);
         Request request = new Request.Builder()
@@ -85,10 +85,10 @@ public class DeleteContact implements TestHelper {
     }
     @Test
     public void createAndDeleteContactByIdNegative() throws IOException {
-        createContactPrecondition();
+       // createContactPrecondition();
 
         Request request = new Request.Builder().url(BASE_URL+DELETE_CONTACT+id)
-                .addHeader(AUTHORIZATION_HEADER,  "df")
+                .addHeader(AUTHORIZATION_HEADER,  "dffv.srfv34.erg45")
                 .delete().build();
         Response response = CLIENT.newCall(request).execute();
         ErrorModel errorModel = GSON.fromJson(response.body().string(), ErrorModel.class);
