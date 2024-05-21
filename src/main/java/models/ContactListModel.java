@@ -3,6 +3,8 @@ package models;
 import java.util.List;
 
 public class ContactListModel {
+    public ContactListModel() {
+    }
 
     private List<Contact> contacts;
 
@@ -17,4 +19,6 @@ public class ContactListModel {
     public ContactListModel(List<Contact> contacts) {
         this.contacts = contacts;
     }
+    public ContactListModel contacts(){this.contacts=contacts;
+    return this;}
 }

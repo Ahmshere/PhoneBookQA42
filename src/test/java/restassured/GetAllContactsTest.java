@@ -17,6 +17,7 @@ public class GetAllContactsTest implements TestHelper {
 
     @Test
     public void getAllContactsPositive() throws IOException {
+        //
         File logFile = new File("src/logs/testresult.log");
         if(!logFile.exists()){
             logFile.getParentFile().mkdirs();

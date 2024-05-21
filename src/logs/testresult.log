@@ -1,0 +1,49 @@
+HTTP/1.1 200 
+Server: Cowboy
+Report-To: {"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1716140784&sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6&s=OwQzG9yroU%2Byr%2BvHmFrlAeVEha9Q9JRXjxZGlBkOkCg%3D"}]}
+Reporting-Endpoints: heroku-nel=https://nel.heroku.com/reports?ts=1716140784&sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6&s=OwQzG9yroU%2Byr%2BvHmFrlAeVEha9Q9JRXjxZGlBkOkCg%3D
+Nel: {"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}
+Connection: keep-alive
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+X-Content-Type-Options: nosniff
+X-Xss-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Frame-Options: DENY
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 19 May 2024 17:46:24 GMT
+Via: 1.1 vegur
+
+{
+    "contacts": [
+        {
+            "id": "6443a130-20e3-4342-8e7d-af8d7ff2e576",
+            "name": "Howard",
+            "lastName": "Adams",
+            "email": "exhhptx@othfr.cni",
+            "phone": "2424738471240",
+            "address": "64 Main Street, San Diego ME 76989",
+            "description": "mydesc"
+        },
+        {
+            "id": "f1e86bcb-16c5-47ba-a841-cd4ce6b9f344",
+            "name": "Garry",
+            "lastName": "Carpenter",
+            "email": "vqcengc@tiwzc.uug",
+            "phone": "28877286231977",
+            "address": "140 Oak Street, San Antonio TN 60052",
+            "description": "mydesc"
+        }
+    ]
+}
+Howard
+exhhptx@othfr.cni
+**************************************************
+Garry
+vqcengc@tiwzc.uug
+**************************************************
