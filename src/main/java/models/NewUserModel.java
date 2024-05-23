@@ -1,5 +1,7 @@
 package models;
 
+import io.qameta.allure.Step;
+
 public class NewUserModel {
 
     String username;
@@ -18,6 +20,7 @@ public class NewUserModel {
         this.password = password;
     }
 
+    @Step("Getting user name")
     public String getUsername() {
         return username;
     }

@@ -2,6 +2,7 @@ package pages;
 
 import config.BaseTest;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +34,7 @@ public MainPage(WebDriver driver){
         Используется AjaxElementLocatorFactory для ожидания элементов до их появления на странице в течение указанного времени (в данном случае, 20 секунд).*/
 }
 
+    @Step("Clicking by login button")
 public LoginPage clickLoginButton(){/* Метод возвращает страницу LoginPage так как при нажатии на меню LOGIN в верхнем меню открывается новая страница */
     loginTopMenuItem.click();
     return new LoginPage(driver);

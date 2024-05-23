@@ -3,6 +3,7 @@ package tests;
 import config.BaseTest;
 import helpers.*;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
 import models.Contact;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -15,8 +16,8 @@ import java.io.IOException;
 public class PhoneBookTests extends BaseTest {
 
     @Test
+    @Description("Login without password. Positive test.")
     public void loginWithoutPasswordTestPositive() throws InterruptedException {
-        Allure.description("Login without password. Positive test.");
         Allure.step("Main page creation ... ");
         MainPage mainPage = new MainPage(getDriver());
         Allure.step("Open Login page ");

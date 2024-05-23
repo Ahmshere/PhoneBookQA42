@@ -1,5 +1,6 @@
 package restassured;
 
+import config.TestData;
 import helpers.EmailGenerator;
 import helpers.PasswordStringGenerator;
 import helpers.PropertiesReaderXML;
@@ -47,12 +48,12 @@ public class LoginTest implements TestHelper {
                 .extract().as(AuthenticationResponseModel.class);
         response.getToken();
     }
-    @Test
-    public void loginNegative(){
+    @Test(dataProvider = "loginData", dataProviderClass = TestData.class)
+    public void loginNegative(String username, String password){
         AuthenticationRequestModel authenticationRequestModel =
                 AuthenticationRequestModel
-                        .username(PropertiesReaderXML.getProperty("fakeuser", XML_FILE_PATH))
-                        .password(PropertiesReaderXML.getProperty("mypassword", XML_FILE_PATH));
+                        .username(username)
+                        .password(password);
         ErrorModel errorModel = given()
                 .body(authenticationRequestModel)
                 .contentType(ContentType.JSON)
