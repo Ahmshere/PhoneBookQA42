@@ -1,6 +1,9 @@
 package models;
 
 public class ContactResponseModel {
+    public ContactResponseModel() {
+    }
+
     String message;
 
     public ContactResponseModel(String message) {
