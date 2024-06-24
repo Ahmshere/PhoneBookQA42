@@ -4,6 +4,7 @@ import config.TestData;
 import helpers.EmailGenerator;
 import helpers.PasswordStringGenerator;
 import helpers.PropertiesReaderXML;
+import helpers.PropertiesWriterXML;
 import interfaces.TestHelper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -46,7 +47,9 @@ public class LoginTest implements TestHelper {
                 .assertThat()
                 .statusCode(200)
                 .extract().as(AuthenticationResponseModel.class);
-        response.getToken();
+        String token = response.getToken();
+        PropertiesWriterXML propertiesWriterXML = new PropertiesWriterXML();
+        propertiesWriterXML.setProperty(TOKEN, response.getToken(), false, XML_FILE_PATH);
     }
     @Test(dataProvider = "loginData", dataProviderClass = TestData.class)
     public void loginNegative(String username, String password){

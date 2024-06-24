@@ -117,4 +117,6 @@ public class PhoneBookTests extends BaseTest {
             TakeScreen.takeScreenShot(getDriver(), "Successful Registration");
         }
     }
+
+
 }
