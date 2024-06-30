@@ -5,6 +5,7 @@ import interfaces.TestHelper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import models.Contact;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -33,7 +34,7 @@ public class UpdateContactTests implements TestHelper {
                contact.setId(id);
                contact.setEmail(EmailGenerator.generateEmail(3,3,3));
 
-               given()
+              given()
                        .header(AUTHORIZATION_HEADER, PropertiesReaderXML.getProperty("token",XML_FILE_PATH))
                        .body(contact).contentType(ContentType.JSON)
                        .when().put().then()
