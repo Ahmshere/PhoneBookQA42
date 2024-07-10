@@ -36,4 +36,5 @@ public class UpdateDeleteContactUsingBatabaseTest implements TestHelper {
         dbConnection.contactDatabaseRecorder(id,contact);
 
     }
+
 }

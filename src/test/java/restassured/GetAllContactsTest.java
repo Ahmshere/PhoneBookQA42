@@ -1,5 +1,6 @@
 package restassured;
 
+import helpers.ExcelExporter;
 import helpers.Logger;
 import helpers.PropertiesReaderXML;
 import interfaces.TestHelper;
@@ -13,7 +14,7 @@ public class GetAllContactsTest implements TestHelper {
 
     @Test
     public void getAllContactsPositive() throws IOException {
-        Logger.setupLogger("src/logs/testresult2.log");
+       // Logger.setupLogger("src/logs/testresult2.log");
         ContactListModel contactList = given()
                 .header(AUTHORIZATION_HEADER, PropertiesReaderXML.getProperty("token",XML_FILE_PATH))
                 .when()
@@ -27,8 +28,9 @@ public class GetAllContactsTest implements TestHelper {
             System.out.println(contact.getName());
             System.out.println(contact.getEmail());
             System.out.println("**************************************************");
+              ExcelExporter.exportContactsToExcel(contactList,"result_set.xlsx");
         }
-       Logger.closeLogger();
+      // Logger.closeLogger();
         System.out.println("++++++++++++++");
 
     }

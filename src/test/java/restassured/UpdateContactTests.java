@@ -41,5 +41,6 @@ public class UpdateContactTests implements TestHelper {
                        .assertThat()
                        .body("message", containsString("updated"));
 
+
     }
 }
