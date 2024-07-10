@@ -1,20 +1,24 @@
 package tests;
 
 import db.DatabaseConnection;
+import db.DatabaseReader;
 import helpers.ContactGenerator;
+import helpers.EmailGenerator;
 import helpers.IDExtractor;
 import helpers.PropertiesReaderXML;
 import interfaces.TestHelper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import models.Contact;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 
 import static io.restassured.RestAssured.given;
 
-public class UpdateDeleteContactUsingBatabaseTest implements TestHelper {
+public class UpdateDeleteContactUsingDatabaseTest implements TestHelper {
 
     Contact contact;
     String id;
@@ -34,7 +38,20 @@ public class UpdateDeleteContactUsingBatabaseTest implements TestHelper {
 
         DatabaseConnection dbConnection = new DatabaseConnection();
         dbConnection.contactDatabaseRecorder(id,contact);
+    }
 
+    @Test
+    public  void updateContactTest() throws SQLException {
+        contact.setId(id);
+        contact.setEmail(EmailGenerator.generateEmail(7,7,3));
+        given()
+                .header(AUTHORIZATION_HEADER,
+                        PropertiesReaderXML.getProperty("token", XML_FILE_PATH))
+                .body(contact)
+                .contentType(ContentType.JSON)
+                .when().put().then().assertThat().statusCode(200);
+        Contact changedContact = DatabaseReader.readContactFromDatabase(id);
+        Assert.assertNotEquals(changedContact.getEmail(), contact.getEmail());
     }
 
 }
