@@ -19,6 +19,7 @@ public class DatabaseConnection {
         String insertQuery
                 = "INSERT INTO contacts(id, name, lastName, email, phone, address, description)"
                 +"VALUES (?,?,?,?,?,?,?)";
+
         System.out.println("QUERY: " + insertQuery);
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
         preparedStatement.setString(1, id);
