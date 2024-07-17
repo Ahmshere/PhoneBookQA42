@@ -27,11 +27,13 @@ public class GetAllContactsTest implements TestHelper {
                 .statusCode(200)
                 .extract()
                 .as(ContactListModel.class);
+
     DatabaseConnection databaseConnection = new DatabaseConnection();
+
         for (Contact contact : contactList.getContacts()){
-            System.out.println(contact.getName());
-            System.out.println(contact.getEmail());
-            System.out.println("**************************************************");
+           System.out.println(contact.getName());
+           System.out.println(contact.getEmail());
+           System.out.println("**************************************************");
             // ExcelExporter.exportContactsToExcel(contactList,"result_set.xlsx");
             databaseConnection.contactDatabaseRecorder(contact.getId(), contact);
         }
